@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ttoken Escritório</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#0b0e14;
+ color:#eef2ff;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:22px;
+ background:#121722;
+ border-bottom:1px solid #252e40;
+}
+.logo{font-size:25px;font-weight:bold;color:#58a6ff}
+.logo span{color:#ff9f43}
+.status{color:#55d6a2;font-size:13px;margin-top:8px}
+main{padding:20px;max-width:700px;margin:auto}
+h2{font-size:21px}
+.card{
+ background:#151b27;
+ border:1px solid #293449;
+ border-radius:15px;
+ padding:18px;
+ margin:15px 0;
+}
+button{
+ border:0;
+ border-radius:10px;
+ padding:14px;
+ color:white;
+ background:#246bce;
+ font-size:16px;
+ font-weight:bold;
+ width:100%;
+ margin-top:10px;
+}
+button.secondary{background:#252e40}
+.agent{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ margin:12px 0;
+}
+.circle{
+ width:42px;height:42px;border-radius:12px;
+ display:grid;place-items:center;background:#253b5c;
+ font-size:20px;
+}
+small{color:#9ba9c2}
+textarea,input{
+ width:100%;padding:13px;margin-top:10px;
+ border-radius:8px;border:1px solid #303c50;
+ background:#0d121c;color:white;font-size:15px;
+}
+nav{
+ position:fixed;bottom:0;width:100%;
+ display:flex;justify-content:space-around;
+ background:#121722;padding:14px;
+ border-top:1px solid #293449;
+}
+nav span{font-size:13px;color:#9ba9c2}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">TTOKEN <span>ESCRITÓRIO</span></div>
+ <div class="status">● Escritório pronto para iniciar</div>
+</header>
+
+<main>
+ <h2>Central de comando</h2>
+ <p><small>Seu escritório de inteligência artificial</small></p>
+
+ <div class="card">
+  <h3>🤖 Maestro</h3>
+  <p>O agente central coordena sua equipe e organiza as tarefas.</p>
+  <button onclick="iniciar()">INICIAR ESCRITÓRIO</button>
+  <p id="status">Aguardando seu comando...</p>
+ </div>
+
+ <div class="card">
+  <h3>👥 Equipe de agentes</h3>
+  <div class="agent"><div class="circle">🧠</div><div>Maestro<br><small>Coordenação central</small></div></div>
+  <div class="agent"><div class="circle">🔥</div><div>Engajamento<br><small>Foco em visualizações e alcance</small></div></div>
+  <div class="agent"><div class="circle">🛒</div><div>Vendas<br><small>Foco em conversão e clientes</small></div></div>
+  <div class="agent"><div class="circle">🎬</div><div>Editor<br><small>Preparação e edição de vídeos</small></div></div>
+ </div>
+
+ <div class="card">
+  <h3>🎯 Nova missão</h3>
+  <textarea id="missao" placeholder="Descreva o que você quer que o escritório faça..."></textarea>
+  <button onclick="enviar()">ENVIAR MISSÃO</button>
+ </div>
+
+ <div class="card">
+  <h3>📊 Evolução do escritório</h3>
+  <p>Missões realizadas: <b id="total">0</b></p>
+  <p>O escritório está aprendendo com seus resultados.</p>
+ </div>
+</main>
+
+<nav>
+<span>🏠 Início</span>
+<span>🤖 Agentes</span>
+<span>🎬 Editor</span>
+<span>📊 Evolução</span>
+</nav>
+
+<script>
+let total=0;
+
+function iniciar(){
+ document.getElementById("status").innerText=
+ "✅ Escritório iniciado! A equipe está aguardando uma missão.";
+}
+
+function enviar(){
+ let m=document.getElementById("missao").value.trim();
+ if(!m){
+  alert("Escreva uma missão primeiro!");
+  return;
+ }
+ total++;
+ document.getElementById("total").innerText=total;
+ document.getElementById("status").innerText=
+ "📋 Missão recebida: "+m+
+ "\n⚠️ Esta versão é um protótipo. A conexão com IA será adicionada na próxima etapa.";
+ alert("Missão registrada com sucesso!");
+}
+</script>
+</body>
+</html>
