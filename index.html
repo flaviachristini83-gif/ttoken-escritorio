@@ -4,551 +4,455 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#212121">
 <title>Ttoken Escritório</title>
 
 <style>
-:root {
-  --bg: #090b10;
-  --panel: #10141d;
-  --panel2: #151a24;
-  --border: #252c38;
-  --text: #e8edf5;
-  --muted: #8993a5;
-  --blue: #5588ff;
-  --blue-soft: #172746;
-}
-
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --bg: #212121;
+  --panel: #2b2b2b;
+  --border: #3b3b3b;
+  --text: #ececec;
+  --muted: #a0a0a0;
+  --accent: #8b9eff;
 }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
 
 button, input, textarea {
-  font: inherit;
+  font-family: inherit;
 }
 
 button {
   cursor: pointer;
 }
 
-.layout {
-  display: flex;
+.app {
   min-height: 100vh;
-}
-
-.sidebar {
-  width: 230px;
-  background: #0c0f15;
-  border-right: 1px solid var(--border);
-  padding: 24px 14px;
   display: flex;
   flex-direction: column;
 }
 
-.brand {
-  font-size: 19px;
-  font-weight: 750;
-  letter-spacing: -0.6px;
-  padding: 5px 12px 30px;
-}
+/* CABEÇALHO */
 
-.brand span {
-  color: var(--blue);
-}
-
-.section-label {
-  font-size: 10px;
-  color: #697487;
-  letter-spacing: 1.5px;
-  padding: 12px;
-}
-
-.nav-btn {
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  text-align: left;
-  padding: 13px 12px;
-  border-radius: 9px;
-  margin-bottom: 4px;
-  font-size: 13px;
-}
-
-.nav-btn.active {
-  background: var(--blue-soft);
-  color: #a9c5ff;
-}
-
-.nav-btn:hover {
-  background: var(--panel2);
-}
-
-.sidebar-bottom {
-  margin-top: auto;
-  padding: 12px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.main {
-  flex: 1;
-  min-width: 0;
-  padding: 34px;
-  max-width: 1100px;
-  margin: auto;
-}
-
-.topbar {
+header {
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 34px;
+  justify-content: space-between;
+  padding: 0 22px;
 }
 
-.eyebrow {
-  color: var(--blue);
-  font-size: 11px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-}
-
-h1 {
-  font-size: 27px;
-  letter-spacing: -1px;
-  margin: 10px 0;
-}
-
-.subtitle {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.status {
-  color: #71c9a1;
-  background: #10241d;
-  border: 1px solid #214432;
-  border-radius: 20px;
-  padding: 8px 12px;
-  font-size: 11px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.header-left {
+  display: flex;
+  align-items: center;
   gap: 16px;
 }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 22px;
-}
-
-.card-title {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-
-.metric {
-  font-size: 27px;
-  font-weight: 700;
-}
-
-.metric-label {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 7px;
-}
-
-.agent-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid #202633;
-}
-
-.agent-row:last-child {
-  border-bottom: 0;
-}
-
-.agent-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  background: #19243a;
-  display: grid;
-  place-items: center;
-  color: #80a7ff;
-  font-size: 17px;
-}
-
-.agent-name {
-  font-size: 13px;
-}
-
-.agent-desc {
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 4px;
-}
-
-.tag {
-  margin-left: auto;
-  font-size: 10px;
-  color: #7f8da2;
-}
-
-.primary-btn {
-  background: var(--blue);
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 17px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.secondary-btn {
-  background: var(--panel2);
+.menu-button {
+  background: transparent;
+  border: none;
   color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 11px 15px;
-  font-size: 12px;
+  font-size: 23px;
 }
 
-.chat-card {
-  margin-top: 18px;
-  padding: 0;
-  overflow: hidden;
+.logo {
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: -0.4px;
 }
 
-.chat-header {
-  padding: 20px;
-  border-bottom: 1px solid var(--border);
+.logo span {
+  color: var(--accent);
 }
 
-.chat-header strong {
-  font-size: 14px;
-}
-
-.chat-header p {
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 0;
-}
-
-.messages {
-  min-height: 170px;
-  max-height: 350px;
-  overflow-y: auto;
-  padding: 20px;
-}
-
-.message {
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px;
-  margin-bottom: 12px;
+.profile-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #454545;
+  color: white;
+  border: 1px solid #666;
   font-size: 13px;
-  line-height: 1.7;
-  white-space: pre-wrap;
 }
 
-.message.user {
-  background: var(--blue-soft);
-  border-color: #263e69;
+/* TELA PRINCIPAL */
+
+main {
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  padding: 25px 22px 110px;
+  flex: 1;
 }
 
-.chat-input {
-  padding: 14px;
-  border-top: 1px solid var(--border);
+.welcome {
+  text-align: center;
+  margin: 70px 0 36px;
+}
+
+.welcome h1 {
+  font-size: clamp(25px, 5vw, 35px);
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.welcome p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* PESQUISA */
+
+.search-box {
+  background: #303030;
+  border: 1px solid #444;
+  border-radius: 22px;
+  padding: 17px;
+  transition: border 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: #777;
 }
 
 textarea {
   width: 100%;
-  min-height: 75px;
+  min-height: 65px;
+  max-height: 200px;
   resize: vertical;
-  background: #0b0e14;
-  border: 1px solid #303849;
-  border-radius: 9px;
-  padding: 13px;
+  background: transparent;
   color: var(--text);
+  border: none;
   outline: none;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-textarea:focus {
-  border-color: var(--blue);
+textarea::placeholder {
+  color: #999;
 }
 
-.input-footer {
+.search-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-.input-footer small {
-  color: var(--muted);
-  font-size: 10px;
+.action-left {
+  display: flex;
+  gap: 8px;
 }
 
-.mobile-menu {
+.tool-button {
+  background: #3b3b3b;
+  border: 1px solid #505050;
+  color: #ddd;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.send-button {
+  background: #e8e8e8;
+  color: #202020;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* SUGESTÕES */
+
+.suggestions {
+  margin-top: 28px;
+}
+
+.suggestions-title {
+  color: #a5a5a5;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.suggestion {
+  background: transparent;
+  border: 1px solid #444;
+  color: #d0d0d0;
+  border-radius: 20px;
+  padding: 11px 15px;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.suggestion:hover {
+  background: #333;
+}
+
+/* CONVERSA */
+
+#conversation {
+  display: none;
+  margin-top: 30px;
+}
+
+.chat-message {
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  line-height: 1.7;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.user-message {
+  background: #303030;
+  margin-left: 12%;
+}
+
+.ai-message {
+  background: transparent;
+  color: #ddd;
+}
+
+/* MENU LATERAL */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 10;
   display: none;
 }
 
-@media(max-width:700px) {
-  .sidebar {
-    display: none;
+.drawer-content {
+  width: 270px;
+  height: 100%;
+  background: #171717;
+  padding: 24px 16px;
+  border-right: 1px solid #333;
+}
+
+.drawer-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 14px;
+  border-radius: 9px;
+  margin: 5px 0;
+}
+
+.drawer-item:hover {
+  background: #303030;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 600px) {
+  header {
+    padding: 0 16px;
   }
 
-  .main {
-    padding: 22px 16px 35px;
+  main {
+    padding: 15px 16px 100px;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .welcome {
+    margin: 60px 0 30px;
   }
 
-  h1 {
-    font-size: 24px;
+  .suggestion-list {
+    flex-direction: column;
   }
 
-  .mobile-menu {
-    display: block;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 12px;
-    border-radius: 8px;
+  .suggestion {
+    text-align: left;
+    width: 100%;
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .user-message {
+    margin-left: 5%;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="layout">
+<div class="app">
 
-<aside class="sidebar">
-  <div class="brand">TTOKEN <span>OFFICE</span></div>
-
-  <div class="section-label">WORKSPACE</div>
-  <button class="nav-btn active" onclick="navegar('overview',this)">Overview</button>
-  <button class="nav-btn" onclick="navegar('maestro',this)">Maestro AI</button>
-  <button class="nav-btn" onclick="navegar('agents',this)">AI Agents</button>
-  <button class="nav-btn" onclick="navegar('editor',this)">Video Studio</button>
-  <button class="nav-btn" onclick="navegar('evolution',this)">Evolution</button>
-
-  <div class="section-label">SYSTEM</div>
-  <button class="nav-btn" onclick="navegar('settings',this)">Settings</button>
-
-  <div class="sidebar-bottom">TTOKEN OFFICE · VERSION 0.1</div>
-</aside>
-
-<main class="main">
-
-  <div class="topbar">
-    <div>
-      <div class="eyebrow">AI WORKSPACE</div>
-      <h1>Command Center</h1>
-      <div class="subtitle">Gerencie seu escritório inteligente.</div>
-    </div>
-    <div class="status">System online</div>
-    <button class="mobile-menu" onclick="alert('Menu em desenvolvimento')">Menu</button>
+<header>
+  <div class="header-left">
+    <button class="menu-button" onclick="abrirMenu()">☰</button>
+    <div class="logo">Ttoken <span>Escritório</span></div>
   </div>
 
-  <div id="overview" class="grid">
+  <button class="profile-button" onclick="irPerfil()">T</button>
+</header>
 
-    <div class="card">
-      <div class="card-title">Total de missões</div>
-      <div class="metric" id="total">0</div>
-      <div class="metric-label">Missões registradas</div>
-    </div>
+<main>
 
-    <div class="card">
-      <div class="card-title">Status do sistema</div>
-      <div class="metric" style="font-size:20px">Operational</div>
-      <div class="metric-label">Workspace inicializado</div>
-    </div>
+  <section class="welcome" id="welcome">
+    <h1>O que vamos criar hoje?</h1>
+    <p>Pesquise, descubra e transforme suas ideias em realidade.</p>
+  </section>
 
-    <div class="card">
-      <div class="card-title">AI Agents</div>
+  <section class="search-box">
+    <textarea id="prompt" placeholder="Descreva o que você está procurando..." onkeydown="atalhoEnter(event)"></textarea>
 
-      <div class="agent-row">
-        <div class="agent-icon">M</div>
-        <div>
-          <div class="agent-name">Maestro</div>
-          <div class="agent-desc">Orquestração central</div>
-        </div>
-        <span class="tag">CORE</span>
+    <div class="search-actions">
+      <div class="action-left">
+        <button class="tool-button" onclick="selecionarArquivo()">+ Arquivos</button>
+        <button class="tool-button" onclick="mostrarSkills()">Skills</button>
       </div>
 
-      <div class="agent-row">
-        <div class="agent-icon">E</div>
-        <div>
-          <div class="agent-name">Engagement</div>
-          <div class="agent-desc">Alcance e audiência</div>
-        </div>
-        <span class="tag">AGENT</span>
-      </div>
-
-      <div class="agent-row">
-        <div class="agent-icon">V</div>
-        <div>
-          <div class="agent-name">Sales</div>
-          <div class="agent-desc">Estratégia comercial</div>
-        </div>
-        <span class="tag">AGENT</span>
-      </div>
-
-      <div class="agent-row">
-        <div class="agent-icon">V</div>
-        <div>
-          <div class="agent-name">Video Studio</div>
-          <div class="agent-desc">Produção e edição</div>
-        </div>
-        <span class="tag">TOOL</span>
-      </div>
+      <button class="send-button" onclick="enviar()" aria-label="Enviar">↑</button>
     </div>
 
-    <div class="card">
-      <div class="card-title">Quick actions</div>
-      <p class="subtitle">Inicie uma nova tarefa para o Maestro.</p>
-      <button class="primary-btn" onclick="navegar('maestro')">Nova missão +</button>
+    <input type="file" id="arquivo" accept="image/*,video/*" hidden onchange="arquivoSelecionado(event)">
+  </section>
+
+  <section class="suggestions" id="suggestions">
+    <div class="suggestions-title">EXPERIMENTE PERGUNTAR</div>
+
+    <div class="suggestion-list">
+      <button class="suggestion" onclick="sugerir(this)">Encontre produtos em alta para vender</button>
+      <button class="suggestion" onclick="sugerir(this)">Quais produtos estão viralizando?</button>
+      <button class="suggestion" onclick="sugerir(this)">Crie um vídeo para meu produto</button>
+      <button class="suggestion" onclick="sugerir(this)">Analise tendências de mercado</button>
     </div>
+  </section>
 
-  </div>
-
-  <div id="maestro" class="card chat-card">
-    <div class="chat-header">
-      <strong>Maestro AI</strong>
-      <p>Central de inteligência e planejamento</p>
-    </div>
-
-    <div class="messages" id="messages">
-      <div class="message">
-        Olá. Sou o Maestro, o núcleo de coordenação do Ttoken Office.
-
-        Descreva seu objetivo. Vou organizar a missão e preparar os próximos passos.
-
-        <br><br><small>Versão inicial · IA ainda não conectada</small>
-      </div>
-    </div>
-
-    <div class="chat-input">
-      <textarea id="prompt" placeholder="Descreva sua missão para o Maestro..."></textarea>
-      <div class="input-footer">
-        <small>Maestro AI · Ttoken Office</small>
-        <button class="primary-btn" onclick="enviarMissao()">Enviar missão</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="agents" class="card" style="margin-top:18px">
-    <div class="card-title">AI Agents</div>
-    <p class="subtitle">Agentes especializados do escritório.</p>
-    <div id="agentDetails"></div>
-  </div>
-
-  <div id="editor" class="card" style="margin-top:18px">
-    <div class="card-title">Video Studio</div>
-    <p class="subtitle">Espaço de preparação de conteúdo audiovisual.</p>
-    <input id="videoLink" placeholder="Cole aqui o link do vídeo">
-    <button class="secondary-btn" onclick="prepararVideo()">Adicionar vídeo</button>
-    <div id="videoStatus" class="subtitle"></div>
-  </div>
-
-  <div id="evolution" class="card" style="margin-top:18px">
-    <div class="card-title">Evolution</div>
-    <p class="subtitle">Histórico de atividades e evolução do escritório.</p>
-    <div id="history"></div>
-  </div>
-
-  <div id="settings" class="card" style="margin-top:18px">
-    <div class="card-title">Settings</div>
-    <p class="subtitle">Configurações do workspace.</p>
-    <p>TTOKEN OFFICE · Prototype 0.1</p>
-  </div>
+  <section id="conversation"></section>
 
 </main>
 </div>
 
+<!-- MENU -->
+
+<div class="drawer" id="drawer" onclick="fecharMenu(event)">
+  <div class="drawer-content">
+    <div class="logo" style="padding:10px 14px 25px">Ttoken <span>Escritório</span></div>
+
+    <button class="drawer-item" onclick="novaConversa()">＋ Nova pesquisa</button>
+    <button class="drawer-item" onclick="irEstudio()">Estúdio</button>
+    <button class="drawer-item" onclick="irPerfil()">Perfil</button>
+
+    <div style="margin-top:35px;padding:12px;color:#777;font-size:11px">
+      SEU ASSISTENTE INTELIGENTE
+    </div>
+  </div>
+</div>
+
 <script>
-let total = 0;
-let historico = [];
-
-function navegar(id,botao) {
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
-
-  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
-  if(botao) botao.classList.add("active");
-}
-
-function enviarMissao() {
+function enviar() {
   const campo = document.getElementById("prompt");
   const texto = campo.value.trim();
 
-  if(!texto) return;
+  if (!texto) return;
 
-  const mensagens = document.getElementById("messages");
+  const conversa = document.getElementById("conversation");
 
-  const user = document.createElement("div");
-  user.className = "message user";
-  user.textContent = texto;
-  mensagens.appendChild(user);
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("suggestions").style.display = "none";
+  conversa.style.display = "block";
 
-  total++;
-  document.getElementById("total").textContent = total;
-
-  historico.push(texto);
-  atualizarHistorico();
+  const pergunta = document.createElement("div");
+  pergunta.className = "chat-message user-message";
+  pergunta.textContent = texto;
+  conversa.appendChild(pergunta);
 
   const resposta = document.createElement("div");
-  resposta.className = "message";
+  resposta.className = "chat-message ai-message";
   resposta.textContent =
-    "Missão registrada. O Maestro recebeu seu objetivo. " +
-    "Nesta versão, ainda estamos preparando a conexão com o modelo de IA " +
-    "para que ele possa analisar sua solicitação e planejar as ações.";
-  mensagens.appendChild(resposta);
+    "Sua pesquisa foi registrada. O próximo passo será conectar o Maestro a uma inteligência artificial para analisar seu pedido e gerar respostas reais.";
+  conversa.appendChild(resposta);
 
   campo.value = "";
-  mensagens.scrollTop = mensagens.scrollHeight;
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
 }
 
-function atualizarHistorico() {
-  document.getElementById("history").innerHTML = "";
-
-  historico.forEach((item,i)=>{
-    const div = document.createElement("div");
-    div.className = "agent-row";
-    div.textContent = "Missão "+(i+1)+": "+item;
-    document.getElementById("history").appendChild(div);
-  });
+function sugerir(botao) {
+  document.getElementById("prompt").value = botao.textContent;
+  document.getElementById("prompt").focus();
 }
 
-function prepararVideo() {
-  const link = document.getElementById("videoLink").value.trim();
-  const status = document.getElementById("videoStatus");
-
-  if(!link) {
-    status.textContent = "Insira um link primeiro.";
-    return;
+function atalhoEnter(event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    enviar();
   }
+}
 
-  status.textContent =
-    "Link registrado no protótipo. O processamento de vídeo será implementado na próxima etapa.";
+function abrirMenu() {
+  document.getElementById("drawer").style.display = "block";
+}
+
+function fecharMenu(event) {
+  if (event.target.id === "drawer") {
+    document.getElementById("drawer").style.display = "none";
+  }
+}
+
+function novaConversa() {
+  document.getElementById("conversation").innerHTML = "";
+  document.getElementById("conversation").style.display = "none";
+  document.getElementById("welcome").style.display = "block";
+  document.getElementById("suggestions").style.display = "block";
+  document.getElementById("drawer").style.display = "none";
+  document.getElementById("prompt").value = "";
+}
+
+function mostrarSkills() {
+  alert("Skills do Maestro serão configuradas na próxima etapa.");
+}
+
+function selecionarArquivo() {
+  document.getElementById("arquivo").click();
+}
+
+function arquivoSelecionado(event) {
+  const arquivo = event.target.files[0];
+  if (!arquivo) return;
+
+  document.getElementById("prompt").value +=
+    "\n[Arquivo selecionado: " + arquivo.name + "]";
+}
+
+function irEstudio() {
+  alert("O Estúdio será desenvolvido na próxima etapa.");
+  document.getElementById("drawer").style.display = "none";
+}
+
+function irPerfil() {
+  alert("O Perfil será desenvolvido na próxima etapa.");
+  document.getElementById("drawer").style.display = "none";
 }
 </script>
 
