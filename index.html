@@ -1,138 +1,556 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ttoken Escritório</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#0b0e14;
- color:#eef2ff;
- font-family:Arial,sans-serif;
+:root {
+  --bg: #090b10;
+  --panel: #10141d;
+  --panel2: #151a24;
+  --border: #252c38;
+  --text: #e8edf5;
+  --muted: #8993a5;
+  --blue: #5588ff;
+  --blue-soft: #172746;
 }
-header{
- padding:22px;
- background:#121722;
- border-bottom:1px solid #252e40;
+
+* {
+  box-sizing: border-box;
 }
-.logo{font-size:25px;font-weight:bold;color:#58a6ff}
-.logo span{color:#ff9f43}
-.status{color:#55d6a2;font-size:13px;margin-top:8px}
-main{padding:20px;max-width:700px;margin:auto}
-h2{font-size:21px}
-.card{
- background:#151b27;
- border:1px solid #293449;
- border-radius:15px;
- padding:18px;
- margin:15px 0;
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
 }
-button{
- border:0;
- border-radius:10px;
- padding:14px;
- color:white;
- background:#246bce;
- font-size:16px;
- font-weight:bold;
- width:100%;
- margin-top:10px;
+
+button, input, textarea {
+  font: inherit;
 }
-button.secondary{background:#252e40}
-.agent{
- display:flex;
- align-items:center;
- gap:12px;
- margin:12px 0;
+
+button {
+  cursor: pointer;
 }
-.circle{
- width:42px;height:42px;border-radius:12px;
- display:grid;place-items:center;background:#253b5c;
- font-size:20px;
+
+.layout {
+  display: flex;
+  min-height: 100vh;
 }
-small{color:#9ba9c2}
-textarea,input{
- width:100%;padding:13px;margin-top:10px;
- border-radius:8px;border:1px solid #303c50;
- background:#0d121c;color:white;font-size:15px;
+
+.sidebar {
+  width: 230px;
+  background: #0c0f15;
+  border-right: 1px solid var(--border);
+  padding: 24px 14px;
+  display: flex;
+  flex-direction: column;
 }
-nav{
- position:fixed;bottom:0;width:100%;
- display:flex;justify-content:space-around;
- background:#121722;padding:14px;
- border-top:1px solid #293449;
+
+.brand {
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.6px;
+  padding: 5px 12px 30px;
 }
-nav span{font-size:13px;color:#9ba9c2}
+
+.brand span {
+  color: var(--blue);
+}
+
+.section-label {
+  font-size: 10px;
+  color: #697487;
+  letter-spacing: 1.5px;
+  padding: 12px;
+}
+
+.nav-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  padding: 13px 12px;
+  border-radius: 9px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.nav-btn.active {
+  background: var(--blue-soft);
+  color: #a9c5ff;
+}
+
+.nav-btn:hover {
+  background: var(--panel2);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 34px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 27px;
+  letter-spacing: -1px;
+  margin: 10px 0;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.status {
+  color: #71c9a1;
+  background: #10241d;
+  border: 1px solid #214432;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 22px;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.metric {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #202633;
+}
+
+.agent-row:last-child {
+  border-bottom: 0;
+}
+
+.agent-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #19243a;
+  display: grid;
+  place-items: center;
+  color: #80a7ff;
+  font-size: 17px;
+}
+
+.agent-name {
+  font-size: 13px;
+}
+
+.agent-desc {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.tag {
+  margin-left: auto;
+  font-size: 10px;
+  color: #7f8da2;
+}
+
+.primary-btn {
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 17px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.secondary-btn {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 15px;
+  font-size: 12px;
+}
+
+.chat-card {
+  margin-top: 18px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-header strong {
+  font-size: 14px;
+}
+
+.chat-header p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.messages {
+  min-height: 170px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.message {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.message.user {
+  background: var(--blue-soft);
+  border-color: #263e69;
+}
+
+.chat-input {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+}
+
+textarea {
+  width: 100%;
+  min-height: 75px;
+  resize: vertical;
+  background: #0b0e14;
+  border: 1px solid #303849;
+  border-radius: 9px;
+  padding: 13px;
+  color: var(--text);
+  outline: none;
+}
+
+textarea:focus {
+  border-color: var(--blue);
+}
+
+.input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.input-footer small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media(max-width:700px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 22px 16px 35px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .mobile-menu {
+    display: block;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+}
 </style>
 </head>
+
 <body>
-<header>
- <div class="logo">TTOKEN <span>ESCRITÓRIO</span></div>
- <div class="status">● Escritório pronto para iniciar</div>
-</header>
+<div class="layout">
 
-<main>
- <h2>Central de comando</h2>
- <p><small>Seu escritório de inteligência artificial</small></p>
+<aside class="sidebar">
+  <div class="brand">TTOKEN <span>OFFICE</span></div>
 
- <div class="card">
-  <h3>🤖 Maestro</h3>
-  <p>O agente central coordena sua equipe e organiza as tarefas.</p>
-  <button onclick="iniciar()">INICIAR ESCRITÓRIO</button>
-  <p id="status">Aguardando seu comando...</p>
- </div>
+  <div class="section-label">WORKSPACE</div>
+  <button class="nav-btn active" onclick="navegar('overview',this)">Overview</button>
+  <button class="nav-btn" onclick="navegar('maestro',this)">Maestro AI</button>
+  <button class="nav-btn" onclick="navegar('agents',this)">AI Agents</button>
+  <button class="nav-btn" onclick="navegar('editor',this)">Video Studio</button>
+  <button class="nav-btn" onclick="navegar('evolution',this)">Evolution</button>
 
- <div class="card">
-  <h3>👥 Equipe de agentes</h3>
-  <div class="agent"><div class="circle">🧠</div><div>Maestro<br><small>Coordenação central</small></div></div>
-  <div class="agent"><div class="circle">🔥</div><div>Engajamento<br><small>Foco em visualizações e alcance</small></div></div>
-  <div class="agent"><div class="circle">🛒</div><div>Vendas<br><small>Foco em conversão e clientes</small></div></div>
-  <div class="agent"><div class="circle">🎬</div><div>Editor<br><small>Preparação e edição de vídeos</small></div></div>
- </div>
+  <div class="section-label">SYSTEM</div>
+  <button class="nav-btn" onclick="navegar('settings',this)">Settings</button>
 
- <div class="card">
-  <h3>🎯 Nova missão</h3>
-  <textarea id="missao" placeholder="Descreva o que você quer que o escritório faça..."></textarea>
-  <button onclick="enviar()">ENVIAR MISSÃO</button>
- </div>
+  <div class="sidebar-bottom">TTOKEN OFFICE · VERSION 0.1</div>
+</aside>
 
- <div class="card">
-  <h3>📊 Evolução do escritório</h3>
-  <p>Missões realizadas: <b id="total">0</b></p>
-  <p>O escritório está aprendendo com seus resultados.</p>
- </div>
+<main class="main">
+
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">AI WORKSPACE</div>
+      <h1>Command Center</h1>
+      <div class="subtitle">Gerencie seu escritório inteligente.</div>
+    </div>
+    <div class="status">System online</div>
+    <button class="mobile-menu" onclick="alert('Menu em desenvolvimento')">Menu</button>
+  </div>
+
+  <div id="overview" class="grid">
+
+    <div class="card">
+      <div class="card-title">Total de missões</div>
+      <div class="metric" id="total">0</div>
+      <div class="metric-label">Missões registradas</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Status do sistema</div>
+      <div class="metric" style="font-size:20px">Operational</div>
+      <div class="metric-label">Workspace inicializado</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">AI Agents</div>
+
+      <div class="agent-row">
+        <div class="agent-icon">M</div>
+        <div>
+          <div class="agent-name">Maestro</div>
+          <div class="agent-desc">Orquestração central</div>
+        </div>
+        <span class="tag">CORE</span>
+      </div>
+
+      <div class="agent-row">
+        <div class="agent-icon">E</div>
+        <div>
+          <div class="agent-name">Engagement</div>
+          <div class="agent-desc">Alcance e audiência</div>
+        </div>
+        <span class="tag">AGENT</span>
+      </div>
+
+      <div class="agent-row">
+        <div class="agent-icon">V</div>
+        <div>
+          <div class="agent-name">Sales</div>
+          <div class="agent-desc">Estratégia comercial</div>
+        </div>
+        <span class="tag">AGENT</span>
+      </div>
+
+      <div class="agent-row">
+        <div class="agent-icon">V</div>
+        <div>
+          <div class="agent-name">Video Studio</div>
+          <div class="agent-desc">Produção e edição</div>
+        </div>
+        <span class="tag">TOOL</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quick actions</div>
+      <p class="subtitle">Inicie uma nova tarefa para o Maestro.</p>
+      <button class="primary-btn" onclick="navegar('maestro')">Nova missão +</button>
+    </div>
+
+  </div>
+
+  <div id="maestro" class="card chat-card">
+    <div class="chat-header">
+      <strong>Maestro AI</strong>
+      <p>Central de inteligência e planejamento</p>
+    </div>
+
+    <div class="messages" id="messages">
+      <div class="message">
+        Olá. Sou o Maestro, o núcleo de coordenação do Ttoken Office.
+
+        Descreva seu objetivo. Vou organizar a missão e preparar os próximos passos.
+
+        <br><br><small>Versão inicial · IA ainda não conectada</small>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <textarea id="prompt" placeholder="Descreva sua missão para o Maestro..."></textarea>
+      <div class="input-footer">
+        <small>Maestro AI · Ttoken Office</small>
+        <button class="primary-btn" onclick="enviarMissao()">Enviar missão</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="agents" class="card" style="margin-top:18px">
+    <div class="card-title">AI Agents</div>
+    <p class="subtitle">Agentes especializados do escritório.</p>
+    <div id="agentDetails"></div>
+  </div>
+
+  <div id="editor" class="card" style="margin-top:18px">
+    <div class="card-title">Video Studio</div>
+    <p class="subtitle">Espaço de preparação de conteúdo audiovisual.</p>
+    <input id="videoLink" placeholder="Cole aqui o link do vídeo">
+    <button class="secondary-btn" onclick="prepararVideo()">Adicionar vídeo</button>
+    <div id="videoStatus" class="subtitle"></div>
+  </div>
+
+  <div id="evolution" class="card" style="margin-top:18px">
+    <div class="card-title">Evolution</div>
+    <p class="subtitle">Histórico de atividades e evolução do escritório.</p>
+    <div id="history"></div>
+  </div>
+
+  <div id="settings" class="card" style="margin-top:18px">
+    <div class="card-title">Settings</div>
+    <p class="subtitle">Configurações do workspace.</p>
+    <p>TTOKEN OFFICE · Prototype 0.1</p>
+  </div>
+
 </main>
-
-<nav>
-<span>🏠 Início</span>
-<span>🤖 Agentes</span>
-<span>🎬 Editor</span>
-<span>📊 Evolução</span>
-</nav>
+</div>
 
 <script>
-let total=0;
+let total = 0;
+let historico = [];
 
-function iniciar(){
- document.getElementById("status").innerText=
- "✅ Escritório iniciado! A equipe está aguardando uma missão.";
+function navegar(id,botao) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  if(botao) botao.classList.add("active");
 }
 
-function enviar(){
- let m=document.getElementById("missao").value.trim();
- if(!m){
-  alert("Escreva uma missão primeiro!");
-  return;
- }
- total++;
- document.getElementById("total").innerText=total;
- document.getElementById("status").innerText=
- "📋 Missão recebida: "+m+
- "\n⚠️ Esta versão é um protótipo. A conexão com IA será adicionada na próxima etapa.";
- alert("Missão registrada com sucesso!");
+function enviarMissao() {
+  const campo = document.getElementById("prompt");
+  const texto = campo.value.trim();
+
+  if(!texto) return;
+
+  const mensagens = document.getElementById("messages");
+
+  const user = document.createElement("div");
+  user.className = "message user";
+  user.textContent = texto;
+  mensagens.appendChild(user);
+
+  total++;
+  document.getElementById("total").textContent = total;
+
+  historico.push(texto);
+  atualizarHistorico();
+
+  const resposta = document.createElement("div");
+  resposta.className = "message";
+  resposta.textContent =
+    "Missão registrada. O Maestro recebeu seu objetivo. " +
+    "Nesta versão, ainda estamos preparando a conexão com o modelo de IA " +
+    "para que ele possa analisar sua solicitação e planejar as ações.";
+  mensagens.appendChild(resposta);
+
+  campo.value = "";
+  mensagens.scrollTop = mensagens.scrollHeight;
+}
+
+function atualizarHistorico() {
+  document.getElementById("history").innerHTML = "";
+
+  historico.forEach((item,i)=>{
+    const div = document.createElement("div");
+    div.className = "agent-row";
+    div.textContent = "Missão "+(i+1)+": "+item;
+    document.getElementById("history").appendChild(div);
+  });
+}
+
+function prepararVideo() {
+  const link = document.getElementById("videoLink").value.trim();
+  const status = document.getElementById("videoStatus");
+
+  if(!link) {
+    status.textContent = "Insira um link primeiro.";
+    return;
+  }
+
+  status.textContent =
+    "Link registrado no protótipo. O processamento de vídeo será implementado na próxima etapa.";
 }
 </script>
+
 </body>
 </html>
